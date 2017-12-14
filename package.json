@@ -1,0 +1,12 @@
+{
+  "name": "interviews-code",
+  "version": "1.0.0",
+  "description": "Test code and do exercises",
+  "main": "index.js",
+  "author": "Santiago Bandiera",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
