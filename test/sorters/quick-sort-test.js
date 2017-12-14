@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import quickSort from '../../app/sorters/quick-sort';
+import quickSort from '/app/sorters/quick-sort';
 
 describe('Sorting Algorithms', () => {
   it('Sort an array using quick-sort', ()=> {
