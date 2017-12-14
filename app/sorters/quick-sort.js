@@ -1,5 +1,5 @@
 export default function quickSort(arr) {
-  console.log("\narr: ", arr);
+  console.log('\narr: ', arr);
 
   if (arr.length <= 1) return arr;
   const a = [];
@@ -7,7 +7,7 @@ export default function quickSort(arr) {
   const l = arr.length - 1;
   const p = arr[l];
 
-  for (let i = 0; i < l; i++){
+  for (let i = 0; i < l; i++) {
     const e = arr[i];
 
     if (e <= p) {
