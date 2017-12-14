@@ -10,7 +10,7 @@
   },
   "engineStrict": false,
   "scripts": {
-    "test": "mocha --recursive --full-trace --require babel-polyfill --require babel-register"
+    "test": "mocha test/**/*-test.js --full-trace --require babel-polyfill --require babel-register"
   },
   "dependencies": {},
   "devDependencies": {

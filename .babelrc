@@ -1,5 +1,7 @@
 {
   "presets": ["env"],
+  "sourceMaps": "both",
+  "retainLines": true,
   "plugins": [
     "babel-root-slash-import"
   ]

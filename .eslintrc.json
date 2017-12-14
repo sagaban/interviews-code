@@ -6,7 +6,7 @@
     "mocha": true,
     "es6": true
   },
-  "rules":{
+  "rules": {
     "require-jsdoc": ["error", {
       "require": {
         "FunctionDeclaration": false,

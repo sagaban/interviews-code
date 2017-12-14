@@ -21,6 +21,8 @@ export default function quickSort(arr) {
   console.log('a: ', a);
   console.log('z: ', z);
 
-  return (a.length > 1 ? quickSort(a) : a).concat(p).concat(z.length > 1 ? quickSort(z) : z);
+  return (a.length > 1 ? quickSort(a) : a)
+    .concat(p)
+    .concat(z.length > 1 ? quickSort(z) : z);
 }
 
