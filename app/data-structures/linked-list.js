@@ -7,14 +7,14 @@ export default function LinkedList() {
    *
    * @param {*} element
    */
-  const Node = (element) => {
+  const Node = function(element) {
     this.element = element;
     this.next = null;
   };
 
   // (internal/private variable) that will store how many items we have on the
   // list.
-  let length = 0; // eslint-disable-line no-unused-vars
+  let length = 0;
 
   // we need to store a reference for the first node
   let head = null;
@@ -40,8 +40,46 @@ export default function LinkedList() {
 
     length++; // update size of list
   };
+
+  this.toArray = function() {
+    let current = head;
+    let array = [];
+    while (current) {
+      array.push(current.element);
+      current = current.next;
+    }
+    return array;
+  };
+
+  this.removeAt = function(position) {
+    // check for out-of-bounds values
+    if (position > -1 && position < length) {
+      let current = head;
+      let previous;
+      let index = 0;
+
+      // removing first item
+      if (position === 0) {
+          head = current.next;
+      } else {
+          while (index++ < position) {
+              previous = current;
+              current = current.next;
+          }
+
+          // link previous with current's next - skip it to remove
+          previous.next = current.next;
+      }
+
+      length--;
+
+      return current.element;
+    } else {
+      return null;
+    }
+  };
+
   this.insert = function(position, element) {};
-  this.removeAt = function(position) {};
   this.remove = function(element) {};
   this.indexOf = function(element) {};
   this.isEmpty = function() {};
