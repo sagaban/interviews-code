@@ -60,15 +60,15 @@ export default function LinkedList() {
 
       // removing first item
       if (position === 0) {
-          head = current.next;
+        head = current.next;
       } else {
-          while (index++ < position) {
-              previous = current;
-              current = current.next;
-          }
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
 
-          // link previous with current's next - skip it to remove
-          previous.next = current.next;
+        // link previous with current's next - skip it to remove
+        previous.next = current.next;
       }
 
       length--;

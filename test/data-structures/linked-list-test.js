@@ -1,4 +1,4 @@
-import {assert} from 'chai';
+import { assert } from 'chai';
 import LinkedList from '/app/data-structures/linked-list';
 
 describe('LinkedList data structure', () => {
@@ -7,12 +7,9 @@ describe('LinkedList data structure', () => {
     linkedList.append('a');
     linkedList.append('b');
     linkedList.append('c');
-    const expected = ['a', 'b', 'c'];
+    const expected = [ 'a', 'b', 'c' ];
     assert.ok(linkedList, 'linkedList exists');
-    assert.deepEqual(
-      linkedList.toArray(),
-      expected,
-      'elemets were added');
+    assert.deepEqual(linkedList.toArray(), expected, 'elemets were added');
   });
 
   it('Remove an element at a certain position', () => {
@@ -21,10 +18,7 @@ describe('LinkedList data structure', () => {
     linkedList.append('b');
     linkedList.append('c');
     linkedList.removeAt(1);
-    const expected = ['a', 'c'];
-    assert.deepEqual(
-      linkedList.toArray(),
-      expected,
-      'element was removed');
+    const expected = [ 'a', 'c' ];
+    assert.deepEqual(linkedList.toArray(), expected, 'element was removed');
   });
 });
