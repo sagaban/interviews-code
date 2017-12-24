@@ -1,5 +1,5 @@
 export default function quickSort(arr) {
-  console.log('\narr: ', arr);
+  // console.log('\narr: ', arr);
 
   if (arr.length <= 1) return arr;
   const a = [];
@@ -17,9 +17,9 @@ export default function quickSort(arr) {
     }
   }
 
-  console.log('p: ', p);
-  console.log('a: ', a);
-  console.log('z: ', z);
+  // console.log('p: ', p);
+  // console.log('a: ', a);
+  // console.log('z: ', z);
 
   return (a.length > 1 ? quickSort(a) : a)
     .concat(p)

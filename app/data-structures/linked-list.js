@@ -79,11 +79,79 @@ export default function LinkedList() {
     }
   };
 
-  this.insert = function(position, element) {};
-  this.remove = function(element) {};
-  this.indexOf = function(element) {};
-  this.isEmpty = function() {};
-  this.size = function() {};
-  this.toString = function() {};
-  this.print = function() {};
+  this.insert = function(position, element) {
+    // check for out-of-bounds values
+    if (position >= 0 && position <= length) {
+      let node = new Node(element);
+      let current = head;
+      let previous;
+      let index = 0;
+
+      if (position === 0) {
+        // add on first position
+        node.next = current;
+        head = node;
+      } else {
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        node.next = current;
+        previous.next = node;
+      }
+
+      length++; // update size of list
+
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  this.indexOf = function(element) {
+    let current = head;
+    let index = 0;
+
+    while (current) {
+      if (element === current.element) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+
+    return -1;
+  };
+
+  this.remove = function(element) {
+    let index = this.indexOf(element);
+    return this.removeAt(index);
+  };
+
+  this.isEmpty = function() {
+    return length === 0;
+  };
+
+  this.size = function() {
+    return length;
+  };
+
+  this.getHead = function() {
+    return head;
+  };
+
+  this.toString = function() {
+    let current = head;
+    let string = '';
+
+    while (current) {
+      string += current.element + (current.next ? ', ' : '');
+      current = current.next;
+    }
+    return string;
+  };
+
+  this.print = function() {
+    console.log(this.toString());
+  };
 }
