@@ -24,3 +24,14 @@ Linked lists store a sequential collection of elements; but unlike arrays, in li
 ![linked-list](./resources/img/linked-list.png)
 
 One of the benefits of a linked list over a conventional array is that we do not need to shift elements over when adding or removing elements. However, we need to use pointers when working with a linked list, and because of it, we need to pay some extra attention when implementing a linked list. Another detail in the array is that we can directly access any element at any position; with the linked list, if we want to access an element from the middle, we need to start from the beginning (**head**) and iterate the list until we find the desired element.
+
+### Double linked list
+
+The difference between a doubly linked list and a normal linked list is that in the linked list we make the link from one node to the next one only. In the doubly linked list, we have a double link: one for the next element and one for the previous element, as shown in the following diagram:
+
+![linked-list](./resources/img/double-linked-list.png)
+
+### Circular linked lists
+A circular linked list can have only one reference direction (as the linked list) or a double reference as the doubly linked list. The only difference between the circular linked list and a linked list is that the last element's next ( tail.next ) pointer does not make a reference to null , but to the first element ( head ), as we can see in the following diagram:
+
+![linked-list](./resources/img/circular-linked-list.png)
