@@ -69,4 +69,25 @@ describe('BinarySearchTree data structure', () => {
     binarySearchTree.inOrderTraverse(callbak);
     assert.deepEqual(actual, expected, 'the seach was perforom in order');
   });
+
+  it('runs a pre-order-transverse in the right order', () => {
+    const actual = [];
+    const expected = [ 11, 7, 5, 3, 9, 8, 10, 15, 13, 12, 14, 20, 18, 25 ];
+    const callbak = (node) => {
+      actual.push(node);
+    };
+    binarySearchTree.preOrderTraverse(callbak);
+    assert.deepEqual(actual, expected, 'the seach was perforom in order');
+  });
+
+  it('runs a post-order-transverse in the right order', () => {
+    const actual = [];
+    const expected = [ 3, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11 ];
+    const callbak = (node) => {
+      actual.push(node);
+    };
+    binarySearchTree.postOrderTraverse(callbak);
+    assert.deepEqual(actual, expected, 'the seach was perforom in order');
+  });
 });
+ 

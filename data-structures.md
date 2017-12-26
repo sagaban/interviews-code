@@ -69,10 +69,29 @@ Traversing (or walking) a tree is the process of visiting all nodes of a tree an
 
 * **In-order traversal**
 
-  An in-order traversal visits all the nodes of a BST in ascending order, meaning it
-visits the nodes from the smallest to largest. An application of in-order traversal
-would be to sort a tree. The inOrderTraverse method receives a callback function as a parameter. This
-function can be used to perform the action we would like to execute when the node
-is visited (this is known as **the visitor** pattern)
+  An in-order traversal visits all the nodes of a BST in ascending order, meaning it visits the nodes from the smallest to largest. An application of in-order traversal
+would be to sort a tree. The inOrderTraverse method receives a callback function as a parameter. This function can be used to perform the action we would like to execute when the node is visited (this is known as **the visitor** pattern).
+
+This would be the node order: 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
+
+![in-order-traverse](./resources/img/in-order-traverse.png)
+
+
+* **Pre-order traversal**
+
+A pre-order traversal visits the node prior to its descendants. An application of pre-order traversal could be to print a structured document.
+
+This would be the node order: 11 7 5 3 6 9 8 10 15 13 12 14 20 18 25
+
+![pre-order-traverse](./resources/img/pre-order-traverse.png)
+
+* **Post-order traversal**
+
+A post-order traversal visits the node after it visits its descendants. An application of post-order could be computing the space used by a file in a directory and its subdirectories.
+
+This would be the node order: 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
+
+![post-order-traverse](./resources/img/post-order-traverse.png)
+
 
 

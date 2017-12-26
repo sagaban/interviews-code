@@ -52,12 +52,36 @@ export default function BinarySearchTree() {
     }
   };
 
+  // This visits all nodes of the tree using pre-order traverse
+  this.preOrderTraverse = function(callback) {
+    preOrderTraverseNode(root, callback);
+  };
+
+  const preOrderTraverseNode = function(node, callback) {
+    if (node !== null) {
+      callback(node.key);
+      preOrderTraverseNode(node.left, callback);
+      preOrderTraverseNode(node.right, callback);
+    }
+  };
+
+  // This visits all nodes of the tree using post-order traverse
+  this.postOrderTraverse = function(callback) {
+    postOrderTraverseNode(root, callback);
+  };
+
+  const postOrderTraverseNode = function(node, callback) {
+    if (node !== null) {
+      postOrderTraverseNode(node.left, callback);
+      postOrderTraverseNode(node.right, callback);
+      callback(node.key);
+    }
+  };
+
   // search(key) : This searches for the key in the tree and returns true
   // if it exists and returns false if the node does not exist
-  // preOrderTraverse : This visits all nodes of the tree using pre-order
-  // traverse
-  // postOrderTraverse : This visits all nodes of the tree using post-order
-  // traverse
+
+
   // min : This returns the minimum value/key in the tree
   // max : This returns the maximum value/key in the tree
 }
