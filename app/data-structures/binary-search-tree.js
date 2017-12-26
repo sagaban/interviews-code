@@ -130,4 +130,65 @@ export default function BinarySearchTree() {
     }
     return null;
   };
+
+  this.remove = function(element) {
+    root = removeNode(root, element);
+  };
+
+  const findMinNode = function(node) {
+    let mutableNode = { ...node };
+    while (mutableNode && mutableNode.left !== null) {
+      mutableNode = mutableNode.left;
+    }
+
+    return mutableNode;
+  };
+
+  const removeNode = function(node, element) {
+    if (node === null) {
+      return null;
+    }
+
+    let toReturnNode = { ...node };
+
+    if (element < node.key) {
+      toReturnNode.left = removeNode(node.left, element);
+      return toReturnNode;
+    } else if (element > node.key) {
+      toReturnNode.right = removeNode(node.right, element);
+      return toReturnNode;
+    } else {
+      // element is equal to node.item
+
+      // handle 3 special conditions
+      // 1 - a leaf node
+      // 2 - a node with only 1 child
+      // 3 - a node with 2 children
+
+      // case 1
+      if (node.left === null && node.right === null) {
+        toReturnNode = null;
+        return toReturnNode;
+      }
+
+      // case 2
+      if (node.left === null) {
+        toReturnNode = node.right;
+        return toReturnNode;
+      } else if (node.right === null) {
+        toReturnNode = node.left;
+        return toReturnNode;
+      }
+
+      // case 3
+      // Find the min node of the right branch
+      const aux = findMinNode(node.right);
+      // replace the current node (the one to delete) with the new value
+      toReturnNode.key = aux.key;
+      // Remove the node with the minimun value, because it takes the place
+      // of the removed node
+      toReturnNode.right = removeNode(node.right, aux.key);
+      return toReturnNode;
+    }
+  };
 }

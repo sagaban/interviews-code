@@ -121,4 +121,41 @@ describe('BinarySearchTree data structure', () => {
       'the nonexistent Value seach was perforom ok'
     );
   });
+
+  it('removes leaf nodes', () => {
+    binarySearchTree.remove(8);
+    const actual = [];
+    const expected = [ 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 18, 20, 25 ];
+    const callbak = (node) => {
+      actual.push(node);
+    };
+    binarySearchTree.inOrderTraverse(callbak);
+    assert.deepEqual(actual, expected, 'the leaf node was removed');
+  });
+
+  it('removes nodes with one child', () => {
+    binarySearchTree.remove(5);
+    const actual = [];
+    const expected = [ 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 20, 25 ];
+    const callbak = (node) => {
+      actual.push(node);
+    };
+    binarySearchTree.inOrderTraverse(callbak);
+    assert.deepEqual(actual, expected, 'the node with one child was removed');
+  });
+
+  it('removes nodes with two children', () => {
+    binarySearchTree.remove(15);
+    const actual = [];
+    const expected = [ 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 18, 20, 25 ];
+    const callbak = (node) => {
+      actual.push(node);
+    };
+    binarySearchTree.inOrderTraverse(callbak);
+    assert.deepEqual(
+      actual,
+      expected,
+      'the node with two children was removed'
+    );
+  });
 });

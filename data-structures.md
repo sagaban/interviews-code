@@ -93,5 +93,20 @@ This would be the node order: 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
 
 ![post-order-traverse](./resources/img/post-order-traverse.png)
 
+#### Removing a node
+
+* **Removing a leaf node**
+
+![removing-leaf-node](./resources/img/removing-leaf-node.png)
+
+* **Removing a node with a left or right child**
+
+![removing-node-one-child](./resources/img/removing-node-one-child.png)
+
+* **Removing a node with two children**
+
+![removing-node-two-children](./resources/img/removing-node-two-children.png)
+
+
 
 
