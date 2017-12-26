@@ -78,10 +78,56 @@ export default function BinarySearchTree() {
     }
   };
 
-  // search(key) : This searches for the key in the tree and returns true
+  // This searches for the key in the tree and returns true
   // if it exists and returns false if the node does not exist
+  this.search = function(key) {
+    return searchNode(root, key);
+  };
 
+  const searchNode = function(node, key) {
+    if (node === null) {
+      return false;
+    }
 
-  // min : This returns the minimum value/key in the tree
-  // max : This returns the maximum value/key in the tree
+    if (key < node.key) {
+      return searchNode(node.left, key);
+    } else if (key > node.key) {
+      return searchNode(node.right, key);
+    } else {
+      // element is equal to node.item
+      return true;
+    }
+  };
+
+  //  This returns the minimum value/key in the tree
+  this.min = function() {
+    return minNode(root);
+  };
+
+  const minNode = function(node) {
+    if (node) {
+      while (node && node.left !== null) {
+        node = node.left;
+      }
+
+      return node.key;
+    }
+    return null;
+  };
+
+  // This returns the maximum value/key in the tree
+  this.max = function() {
+    return maxNode(root);
+  };
+
+  const maxNode = function(node) {
+    if (node) {
+      while (node && node.right !== null) {
+        node = node.right;
+      }
+
+      return node.key;
+    }
+    return null;
+  };
 }

@@ -42,6 +42,7 @@ describe('BinarySearchTree data structure', () => {
   });
 
   it('runs a in-order-transverse search', () => {
+    // This in an ineficient way of search a value. It's just for testing pourpuse
     const nodeValueToSeach = 10;
     const nonexistentValue = 6;
     let assertCounter = 0;
@@ -89,5 +90,35 @@ describe('BinarySearchTree data structure', () => {
     binarySearchTree.postOrderTraverse(callbak);
     assert.deepEqual(actual, expected, 'the seach was perforom in order');
   });
+
+  it('get the min node', () => {
+    const expected = 3;
+    assert.strictEqual(
+      binarySearchTree.min(),
+      expected,
+      'the min values is ok'
+    );
+  });
+
+  it('get the max node', () => {
+    const expected = 25;
+    assert.strictEqual(
+      binarySearchTree.max(),
+      expected,
+      'the max values is ok'
+    );
+  });
+
+  it('searches a desired value', () => {
+    const existentValue = 7;
+    const nonexistentValue = 16;
+    assert.ok(
+      binarySearchTree.search(existentValue),
+      'the existent Value seach was perforom ok'
+    );
+    assert.notOk(
+      binarySearchTree.search(nonexistentValue),
+      'the nonexistent Value seach was perforom ok'
+    );
+  });
 });
- 
