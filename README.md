@@ -7,6 +7,8 @@ Samples of algorithms and exercises, and useful concepts.
 * Liked list
   * Double linked list*
   * Circular linked list*
+* Trees
+  * Binary tree and binary search tree
 
 \* Only info
 

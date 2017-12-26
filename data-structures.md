@@ -29,9 +29,39 @@ One of the benefits of a linked list over a conventional array is that we do not
 
 The difference between a doubly linked list and a normal linked list is that in the linked list we make the link from one node to the next one only. In the doubly linked list, we have a double link: one for the next element and one for the previous element, as shown in the following diagram:
 
-![linked-list](./resources/img/double-linked-list.png)
+![double-linked-list](./resources/img/double-linked-list.png)
 
 ### Circular linked lists
 A circular linked list can have only one reference direction (as the linked list) or a double reference as the doubly linked list. The only difference between the circular linked list and a linked list is that the last element's next ( tail.next ) pointer does not make a reference to null , but to the first element ( head ), as we can see in the following diagram:
 
-![linked-list](./resources/img/circular-linked-list.png)
+![circular-linked-list](./resources/img/circular-linked-list.png)
+
+## Trees
+
+A tree consists of nodes with a parent-child relationship. Each node has a parent (except for the first node at the top) and zero or more children:
+
+![tress](./resources/img/tree.png)
+
+The top node of a tree is called the **root** (**11**). It is the node that does not have a parent. Each element of the tree is called node. There are internal nodes and external nodes. An internal node is a node with at least one child (**7, 5, 9, 15, 13**, and **20** are internal nodes). A node that does not have children is called an external node or leaf (**3, 6, 8, 10, 12, 14, 18**, and **25** are leaves).
+
+A node can have ancestors and descendants. The ancestors of a node (except the root) are parent, grandparent, great-grandparent, and so on. The descendants of a node are child, grandchild, great-grandchild, and so on. For example, node **5** has **7** and **11** as its ancestors and 3 and 6 as its descendants.
+
+Another terminology used with trees is the subtree. A subtree consists of a node and its descendants. For example, nodes **13, 12**, and **14** consist a subtree of the tree from the preceding diagram.
+
+The depth of a node consists of the number of ancestors. For example, node 3 has depth 3 because it has 3 ancestors (**5, 7**, and **11**).
+
+The height of a tree consists of the maximum depth of any node. A tree can also be broken down into levels. The root is on level 0, its children are on level 1, and so on. The tree from the preceding diagram has height 3 (maximum depth is 3 as shown in the preceding figure—level 3).
+
+### Binary tree and binary search tree
+
+A node in a binary tree has at most two children: one left child and one right child. This definition allows us to write more efficient algorithms for inserting, searching, and deleting nodes to/from a tree.
+
+A binary search tree is a binary tree, but it only allows you to store nodes with lesser values on the left side and nodes with greater values on the right side. The diagram in the previous topic exemplifies a binary search tree.
+
+The following diagram exemplifies how our **Binary Search Tree** (**BST**) will be organized in terms of data structure:
+
+![binary-search-tree](./resources/img/binary-search-tree.png)
+
+Just like in linked lists, we will work with pointers again to represent the connection between the nodes (called **edges** in tree terminology). When we worked with double linked lists, each node had two pointers: one to indicate the next node and another one to indicate the previous node. With trees one pointer points to the left child, and the other one to the right child.
+
+
