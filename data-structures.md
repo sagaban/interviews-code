@@ -64,4 +64,15 @@ The following diagram exemplifies how our **Binary Search Tree** (**BST**) will 
 
 Just like in linked lists, we will work with pointers again to represent the connection between the nodes (called **edges** in tree terminology). When we worked with double linked lists, each node had two pointers: one to indicate the next node and another one to indicate the previous node. With trees one pointer points to the left child, and the other one to the right child.
 
+#### Tree traversal
+Traversing (or walking) a tree is the process of visiting all nodes of a tree and performing an operation at each node. But how should we do that? Should we start from the top of the tree or from the bottom? From the left or the right side? There are three different approaches that can be used to visit all the nodes in a tree: in-order, pre-order, and post-order.
+
+* **In-order traversal**
+
+  An in-order traversal visits all the nodes of a BST in ascending order, meaning it
+visits the nodes from the smallest to largest. An application of in-order traversal
+would be to sort a tree. The inOrderTraverse method receives a callback function as a parameter. This
+function can be used to perform the action we would like to execute when the node
+is visited (this is known as **the visitor** pattern)
+
 

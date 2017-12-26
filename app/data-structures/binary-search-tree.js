@@ -39,9 +39,21 @@ export default function BinarySearchTree() {
     return root;
   };
 
+  // This visits all nodes of the tree using in-order traverse
+  this.inOrderTraverse = function(callback) {
+    inOrderTraverseNode(root, callback);
+  };
+
+  const inOrderTraverseNode = function(node, callback) {
+    if (node !== null) {
+      inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      inOrderTraverseNode(node.right, callback);
+    }
+  };
+
   // search(key) : This searches for the key in the tree and returns true
   // if it exists and returns false if the node does not exist
-  // inOrderTraverse : This visits all nodes of the tree using in-order traverse
   // preOrderTraverse : This visits all nodes of the tree using pre-order
   // traverse
   // postOrderTraverse : This visits all nodes of the tree using post-order
