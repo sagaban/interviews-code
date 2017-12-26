@@ -3,6 +3,7 @@
     "bandiera"
   ],
   "editor.tabSize": 2,
+  "prettier.printWidth": 80,
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
   "prettier.trailingComma": "es5"
