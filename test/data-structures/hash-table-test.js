@@ -23,6 +23,7 @@ describe('HashTable data structure', () => {
 
   it('Does not overwrite elements with the same hash', () => {
     hashTable = new HashTable();
+    // works for the 'loseloseHashCode' hash function, % 37
     const sameHashElements = [ [ 'ab', 2 ], [ 'y', 7 ] ];
     sameHashElements.forEach((element) =>
       hashTable.put(element[0], element[1])
