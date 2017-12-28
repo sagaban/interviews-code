@@ -4,7 +4,7 @@ export default function HashTable() {
   const TABLE_SIZE = 37;
   const table = [];
 
-  const loseloseHashCode = (key) => {
+  const loseloseHashCode = (key) => { // eslint-disable-line no-unused-vars
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       hash += key.charCodeAt(i);
@@ -12,9 +12,22 @@ export default function HashTable() {
     return hash % TABLE_SIZE;
   };
 
+
+  const djb2HashCode = function(key) { // eslint-disable-line no-unused-vars
+    // Initialize the hash with a prime number, random
+    let hash = 5381;
+    for (let i = 0; i < key.length; i++) {
+      // Multiply the hash bya  magical number and sum it with the ASCII value
+      // of the character line
+      hash = hash * 33 + key.charCodeAt(i);
+    }
+    // return the module of another random prime number
+    return hash % 1013;
+  };
+
   // So we can change the hash function with ease
   const hashCode = function(key) {
-    return loseloseHashCode(key);
+    return djb2HashCode(key);
   };
 
   const ValuePair = function(key, value) {
