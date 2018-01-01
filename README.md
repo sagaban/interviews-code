@@ -20,6 +20,10 @@ Samples of algorithms and exercises, and useful concepts.
 
 * Quick sort
 
+## Interview questions
+
+* Arrays and Strings
+
 # Resources
 
  * [Cracking the Coding Interview - 6th Edition](http://www.crackingthecodinginterview.com/)
