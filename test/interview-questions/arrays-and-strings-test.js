@@ -90,6 +90,10 @@ it('check if two string are permutations of each others', () => {
     [ 'prale', 'pale', true ],
     [ 'pale', 'bale', true ],
     [ 'pale', 'bake', false ],
+    [ 'pale', 'paless', false ],
+    [ 'pale', 'pale', false ],
+    [ 4, 'dog', false ],
+    [ 'cat', {}, false ],
   ].forEach((entry) => {
     assert.strictEqual(
       oneWayStringEdition(entry[0], entry[1]),

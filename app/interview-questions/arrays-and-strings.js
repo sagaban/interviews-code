@@ -209,6 +209,39 @@ export const isPalindromePermutation = (str) => {
   return true;
 };
 
+// BOOK SOLUTION
+export const palinPerm = function(string) {
+  // create object literal to store charcount
+  let chars = {};
+  let currChar;
+  let mulligan = false;
+  let isPerm = true;
+  // pump characters in, spaces not counted, all lowercase
+  string.split('').forEach((char) => {
+    if (char !== ' ') {
+      currChar = char.toLowerCase();
+      if (chars[currChar] === undefined) {
+        chars[currChar] = 0;
+      }
+      chars[currChar]++;
+    }
+  });
+  // check that all chars are even count, except for one exception
+  Object.keys(chars).forEach((char) => {
+    if (chars[char] % 2 > 0) {
+      // if more than one exception, return false
+      if (mulligan) {
+        isPerm = false; // return in a forEach statement doesn't flow out of
+        // function scope
+      } else {
+        mulligan = true;
+      }
+    }
+  });
+  // if not return true
+  return isPerm;
+};
+
 /**
  * 1.5
  * One Away: There are three types of edits that can be performed on strings:
@@ -226,38 +259,80 @@ export const isPalindromePermutation = (str) => {
  * @return {boolean}
  */
 export const oneWayStringEdition = (str1, str2) => {
-  if (typeof str1 !== 'string' || typeof str2 !== 'string') {
+  if (typeof str1 !== 'string' || typeof str2 !== 'string' || str1 === str2) {
     return false;
   }
   const charArray1 = str1.trim().split('');
   const charArray2 = str2.trim().split('');
-  let whichIsBigger;
-  let mayorLength = charArray1.length;
-  if (charArray1.length > charArray2.length) {
-    whichIsBigger = 1;
-  } else if (charArray1.length < charArray2.length) {
-    whichIsBigger = -1;
-    mayorLength = charArray2.length;
-  } else {
-    whichIsBigger = 0;
-  }
+
+  const diff = charArray1.length - charArray2.length;
+  if (Math.abs(diff) > 1) return false;
+  let mayorLength = Math.max(charArray1.length, charArray2.length);
 
   let edited = false;
   for (let i = 0, j = 0; i < mayorLength; i++, j++) {
     if (charArray1[i] !== charArray2[j]) {
       if (edited) return false; // Only one edition
       edited = true;
-      switch (whichIsBigger) {
-        case 1:
-          j--;
-          break;
-        case -1:
-          i--;
-          break;
-        default:
-          break;
-      }
+      if (diff > 0) j--;
+      if (diff < 0) i--;
     }
   }
   return edited;
+};
+
+// BOOK SOLUTION
+export const oneAway = function(string1, string2) {
+  // insert a char for str1 -> remove a char for str2
+  let checkOneMissing = function(first, second) {
+    if (first.length !== second.length - 1) {
+      return false;
+    } else {
+      let mulligan = false;
+      let fP = 0; // first Pointer
+      let sP = 0; // second Pointer
+      while (fP < first.length) {
+        if (first[fP] !== second[sP]) {
+          if (mulligan) {
+            return false;
+          } else {
+            mulligan = true;
+            sP++; // second length is longer
+          }
+        } else {
+          fP++;
+          sP++;
+        }
+      }
+      return true;
+    }
+  };
+
+  let checkOneDiff = function(first, second) {
+    if (first.length !== second.length) {
+      return false;
+    } else {
+      let mulligan = false;
+      let fP = 0; // first Pointer
+      let sP = 0; // second Pointer
+      while (fP < first.length) {
+        if (first[fP] !== second[sP]) {
+          if (mulligan) {
+            return false; // more than one mismatch
+          } else {
+            mulligan = true; // use up mulligan
+          }
+        }
+        fP++;
+        sP++;
+      }
+      return true;
+    }
+  };
+
+  return (
+    checkOneMissing(string1, string2) ||
+    checkOneMissing(string2, string1) ||
+    checkOneDiff(string1, string2)
+  );
 };
