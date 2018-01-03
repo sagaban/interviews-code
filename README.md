@@ -20,7 +20,7 @@ Samples of algorithms and exercises, and useful concepts.
 
 * Quick sort
 
-## Interview questions
+## Interview questions (exercises)
 
 * Arrays and Strings
 

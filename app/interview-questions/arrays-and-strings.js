@@ -30,7 +30,8 @@ export const isUnique = (inputString) => {
  * @param  {string[]} str String to check, passed in as a character array
  * @return {boolean}      True if unique characters, otherwise false
  */
-function hasUniqueCharactersSet(str) { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+function hasUniqueCharactersSet(str) {
   let chars = new Set();
 
   for (let i = 0; i < str.length; ++i) {
@@ -50,10 +51,11 @@ function hasUniqueCharactersSet(str) { // eslint-disable-line no-unused-vars
  * Time: O(N lg N)
  * Additional space: O(1)
  *
- * @param  {string[]} str String to check, passed in as a character array
+ * @param  {string}   str String to check, passed in as a character array
  * @return {boolean}      True if unique characters, otherwise false
  */
-function hasUniqueCharactersSort(str) { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+function hasUniqueCharactersSort(str) {
   // sort string using quicksort
   str.sort();
 
@@ -88,9 +90,8 @@ export const isPermutation = (strA, strB) => {
   return true;
 };
 
-
-// ALTERNATIVE SOLUTIONS
-// ---------------------
+// ALTERNATIVE SOLUTION
+// --------------------
 /**
  * Sort both strings and check if they are equal afterwards. Permutations will
  * be identical sorted strings.
@@ -104,7 +105,8 @@ export const isPermutation = (strA, strB) => {
  * @return {boolean}     True if first and second strings are permutations
  *                       otherwise false
  */
-function isPermutationSorted(str1, str2) { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+function isPermutationSorted(str1, str2) {
   if (str1.length === 0 || str1.length !== str2.length) {
     return false;
   }
@@ -114,3 +116,148 @@ function isPermutationSorted(str1, str2) { // eslint-disable-line no-unused-vars
 
   return str1.every((v, i) => v === str2[i]);
 }
+
+/**
+ * 1.3
+ * URLify: Write a method to replace all spaces in a string with '%20'. You may
+ * assume that the string has sufficient space at the end to hold the additional
+ * characters, and that you are given the "true" length of the string.
+ * (Note: If implementing in Java, please use a character array so that you can
+ * perform this operation in place.)
+ * EXAMPLE
+ * Input: "Mr John Smith ", 13
+ * Output: "Mr%20J ohn%20Smith"
+ *
+ * @param {string} str - The string to URLify.
+ * @return {string}
+ */
+export const uRLify = (str) => str.trim().replace(/\ /g, '%20');
+
+// ALTERNATIVE SOLUTION
+// --------------------
+// Note that is solution is the one in the book, not very intuitive for
+// JavaScript language
+/**
+ * Count the number of spaces in the string to calculate the new length of the
+ * string and move characters back where required replacing spaces with %20.
+ *
+ * N = |url|
+ * Time: O(N)
+ * Additional space: O(1)
+ *
+ * @param  {string[]} url URL string as a character arra which will be
+ *                        updated in place
+ * @return {string[]}     Updated URL character array
+ */
+// eslint-disable-next-line no-unused-vars
+function encodeSpaces(url) {
+  if (!url || url.length === 0) {
+    return url;
+  }
+
+  let spaceCount = 0;
+  for (let i = 0; i < url.length; ++i) {
+    if (url[i] === ' ') {
+      ++spaceCount;
+    }
+  }
+
+  // add an extra 2 characters for each space
+  let newLength = url.length - 1 + 2 * spaceCount;
+  for (let i = url.length - 1, j = newLength; i >= 0 && j > i; --i, --j) {
+    if (url[i] === ' ') {
+      url[j] = '0';
+      url[--j] = '2';
+      url[--j] = '%';
+    } else {
+      url[j] = url[i];
+    }
+  }
+
+  return url;
+}
+
+/**
+ * 1.4
+ * Palindrome Permutation: Given a string, write a function to check if it is a
+ * permutation of a palindrome. A palindrome is a word or phrase that is the
+ * same forwards and backwards. A permutation is a rearrangement of letters.The
+ * palindrome does not need to be limited to just dictionary words.
+ * EXAMPLE
+ * Input: Tact Coa
+ * Output: True (permutations: "taco cat". "atco cta". etc.)
+ *
+ * @param  {string}   str   String to check
+ * @return {boolean}
+ */
+export const isPalindromePermutation = (str) => {
+  if (!str || typeof str !== 'string' || !str.trim()) {
+    return false;
+  }
+  let oddFound = false;
+  const sortedArray = str.replace(/\ /g, '').toLowerCase().split('').sort();
+  for (let i = 0; i < sortedArray.length; i += 2) {
+    if (sortedArray[i] !== sortedArray[i + 1]) {
+      if (oddFound) {
+        return false;
+      } else {
+        i--;
+        oddFound = true;
+      }
+    }
+  }
+  return true;
+};
+
+/**
+ * 1.5
+ * One Away: There are three types of edits that can be performed on strings:
+ * insert a character, remove a character, or replace a character.
+ * Given two strings, write a function to check if they are one edit (or zero
+ * edits) away.
+ * EXAMPLE
+ * pale, ple -> true
+ * pales. pale -> true
+ * pale. bale -> true
+ * pale. bake -> false
+ *
+ * @param  {string} str1 First string
+ * @param  {string} str2 Second string
+ * @return {boolean}
+ */
+export const oneWayStringEdition = (str1, str2) => {
+  if (typeof str1 !== 'string' || typeof str2 !== 'string') {
+    return false;
+  }
+  const charArray1 = str1.trim().split('');
+  const charArray2 = str2.trim().split('');
+  let whichIsBigger;
+  let mayorLength = charArray1.length;
+  if (charArray1.length > charArray2.length) {
+    whichIsBigger = 1;
+  } else if (charArray1.length < charArray2.length) {
+    whichIsBigger = -1;
+    mayorLength = charArray2.length;
+  } else {
+    whichIsBigger = 0;
+  }
+
+  let edited = false;
+  for (let i = 0, j = 0; i < mayorLength; i++, j++) {
+    if (charArray1[i] !== charArray2[j]) {
+      if (edited) return false; // Only one edition
+      edited = true;
+      switch (whichIsBigger) {
+        case 1:
+          j--;
+          break;
+        case -1:
+          i--;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return edited;
+};
