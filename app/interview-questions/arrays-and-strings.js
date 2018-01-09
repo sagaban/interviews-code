@@ -336,3 +336,286 @@ export const oneAway = function(string1, string2) {
     checkOneDiff(string1, string2)
   );
 };
+
+/**
+ * 1.6
+ * String Compression: Implement a method to perform basic string compression
+ * using the counts of repeated characters. For example, the string aabcccccaaa
+ * would become a2b1c5a3. If the "compressed" string would not become smaller
+ * than the original string, your method should return the original string. You
+ * can assume the string has only uppercase and lowercase letters (a - z)
+ *
+ *
+ * @param  {string}   str   String to compress
+ * @return {string}
+ */
+export const stringCompression = (str) => {
+  if (!str || typeof str !== 'string') {
+    return '';
+  }
+  let compressed = '';
+  let counter = 1;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== str[i+1]) {
+      compressed = `${compressed}${str[i]}${counter}`;
+      counter = 1;
+      if (compressed.length > str.length) {
+        return str;
+      }
+    } else {
+      counter++;
+    }
+  }
+  return compressed;
+};
+
+// BOOK SOLUTION
+/**
+ * Takes an input string and counts contiguous sequences of the same character
+ * and replaces them with XC (X = count, C = character).
+ *
+ * N = |str|
+ * Time: O(N)
+ * Additional space: O(N)
+ *
+ * @param  {string} str [description]
+ * @return {[type]}     [description]
+ */
+export function compressString(str) {
+  if (!str) {
+    return str;
+  }
+
+  let cStr = '';
+  for (let i = 0; i < str.length; ++i) {
+    let char = str[i];
+    let start = i;
+    while (i + 1 < str.length && char === str[i + 1]) {
+      ++i;
+    }
+    // JS does not have a StringBuilder/StringBuffer style class for creating
+    // strings string concatenation has been heavily optimised in JS
+    // implementations and is faster than creating a string via an array then
+    // using a .join('') at the end
+    cStr += (i - start + 1) + char;
+  }
+
+  return cStr.length < str.length ? cStr : str;
+}
+
+/**
+ * 1.7
+ * Rotate Matrix: Given an image represented by an NxN matrix, where each pixel
+ * in the image is 4 bytes, write a method to rotate the image by 90 degrees.
+ * Can you do this in place?
+ *
+ * @param  {array}    matrix  Matrix to rotate
+ * @return {array}            Rotated matrix
+ */
+export const rotateMatrix = (matrix) => {
+  if (!matrix || matrix.length < 0) {
+    return [];
+  }
+  const matrixToReturn = [];
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if ( i === 0) {
+        matrixToReturn[j] = [];
+      }
+      matrixToReturn[j][i] = matrix[i][j];
+    }
+  }
+  return matrixToReturn;
+};
+
+
+// BOOK SOLUTION
+/**
+ * Go through the matrix diagonally from 0,0 until half way through (one less
+ * where odd N). For each diagonal starting point move through matrix along row
+ * until length - starting index. For each index in the matrix go through all 4
+ * sides moving items along one place.
+ *
+ * N = dimension of matrix
+ * Time: O(N^2)
+ * Additional space: O(1)
+ *
+ * @param  {array} matrix NxN matrix to rotate in place
+ * @return {array}        Rotated matrix, same object as input
+ */
+export function rotateMatrixBook(matrix) {
+  if (!matrix || matrix.length === 0 || matrix.length !== matrix[0].length) {
+    throw new Error('invalid matrix');
+  }
+  if (matrix.length < 2) {
+    return matrix; // no need to do anything to rotate a 1,1 matrix
+  }
+
+  let len = matrix.length - 1;
+  let half = Math.floor(matrix.length / 2);
+  // loop through diagonal
+  for (let start = 0; start < half; ++start) {
+    // loop through x axis
+    for (let i = 0; i < len - (start * 2); ++i) {
+      let y = start;
+      let x = start + i;
+      let prev = matrix[y][x];
+
+      // loop through all 4 corners
+      for (let j = 0; j < 4; ++j) {
+        let nextY = x;
+        let nextX = len - y;
+        let next = matrix[nextY][nextX];
+        matrix[nextY][nextX] = prev;
+        prev = next;
+        x = nextX;
+        y = nextY;
+      }
+    }
+  }
+
+  return matrix;
+}
+
+/**
+ * 1.8
+ * Zero Matrix: Write an algorithm such that if an element in an MxN matrix is
+ * 0, its entire row and column are set to O.
+ *
+ * @param  {array}    matrix  Matrix to set 0
+ * @return {array}
+ */
+export const zeroMatrix = (matrix) => {
+  if (!matrix || matrix.length < 0) {
+    return [];
+  }
+  // I go through the original matrix to find the 0 values
+  const rowsToZero = [];
+  const columnsToZero = [];
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if ( matrix[i][j] === 0) {
+        rowsToZero.push(i);
+        columnsToZero.push(j);
+      }
+      matrix[i][j];
+    }
+  }
+  // Create the matrix to return
+  const matrixToReturn = [];
+  for (let i = 0; i < matrix.length; i++) {
+    matrixToReturn[i] = [];
+    for (let j = 0; j < matrix[i].length; j++) {
+     if (rowsToZero.includes(i) || columnsToZero.includes(j)) {
+       matrixToReturn[i][j] = 0;
+     } else {
+      matrixToReturn[i][j] = matrix[i][j];
+     }
+    }
+  }
+
+  return matrixToReturn;
+};
+
+
+// BOOK SOLUTION
+/**
+ * Do a first pass through the matrix to find which cells have 0's. When a 0 is
+ * found then mark that row and column as needing to be zeroed out. On the
+ * second pass zero out any cells that need to be zeroed out based on the row or
+ * column indicators.
+ *
+ * N = matrix Y dimension
+ * M = matrix X dimension
+ * Time: O(N * M)
+ * Additional space: O(N + M)
+ *
+ * @param  {array} matrix Matrix to be zeroed in-place
+ * @return {array}        Matrix that has been zeroed, same object as input
+ */
+export function zeroMatrixBook(matrix) {
+  if (!matrix) {
+    throw new Error('invalid matrix');
+  }
+  if (matrix.length === 0) {
+    return matrix;
+  }
+
+  let rows = new Array(matrix.length);
+  let cols = new Array(matrix[0].length);
+
+  rows.fill(false);
+  cols.fill(false);
+
+  for (let y = 0; y < rows.length; ++y) {
+    for (let x = 0; x < cols.length; ++x) {
+      if (matrix[y][x] === 0) {
+        rows[y] = true;
+        cols[x] = true;
+      }
+    }
+  }
+
+  for (let y = 0; y < rows.length; ++y) {
+    for (let x = 0; x < cols.length; ++x) {
+      if (rows[y] || cols[x]) {
+        matrix[y][x] = 0;
+      }
+    }
+  }
+
+  return matrix;
+}
+
+/**
+ * 1.9
+ * String Rotation: Assume you have a method isSubstring which checks if one
+ * word is a substring of another. Given two strings, 51 and 52, write code to
+ * check if 52 is a rotation of 51 using only one call to isSubstring (e.g.,
+ * "waterbottle" is a rotation of "erbottlewat").
+ *
+ * @param  {string}   str1  First string
+ * @param  {string}   str2  Second string
+ * @return {boolean}
+ */
+export const isStringRotation = (str1, str2) => {
+  if (!str1 || typeof str1 !== 'string' || !str2 || typeof str2 !== 'string' ||
+      str1.length !== str2.length ) {
+    // TODO: Should I return boolean or rise an Error?
+    return false;
+  }
+  // isSubstring --> includes
+  return (str1+str1).includes(str2);
+};
+
+// BOOK SOLUTION
+
+/**
+ * Duplicate the rotated string, if the substring being searched is a different
+ * rotation of the string then it will be a substring of the new string. Both
+ * strings must be the same length.
+ *
+ * N = |str1|
+ * Time: O(N)
+ * Additional space: O(N)
+ *
+ * @param  {string}  str1   First string
+ * @param  {string}  str2   String to check if it is a rotated version of str1
+ * @return {boolean}        True if str1 and str2 are rotated versions of
+ *                          each other, otherwise false
+ */
+export function isRotatedSubstring(str1, str2) {
+  if (!str1 || !str2) {
+    throw new Error('invalid input');
+  }
+  if (str1.length !== str2.length) {
+    return false;
+  }
+  return isSubstring(str1 + str1, str2);
+}
+
+// Implementation of isSubstring function which is defined in question
+// can only be called once
+function isSubstring(str, substr) {
+  return str.includes(substr);
+}

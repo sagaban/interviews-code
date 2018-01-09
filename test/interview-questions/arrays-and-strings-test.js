@@ -5,6 +5,10 @@ import {
   uRLify,
   isPalindromePermutation,
   oneWayStringEdition,
+  stringCompression,
+  rotateMatrix,
+  zeroMatrix,
+  isStringRotation,
 } from '/app/interview-questions/arrays-and-strings';
 
 describe('Test all exercises about Arrays and Strings', () => {
@@ -63,7 +67,7 @@ describe('Test all exercises about Arrays and Strings', () => {
     });
   });
 
-  it(`Check a Palindrome-Permutation of certain string`, () => {
+  it(`check a Palindrome-Permutation of certain string`, () => {
     [
       [ '   ', false ],
       [ 'Tact Coa', true ], // Taco Cat
@@ -80,7 +84,6 @@ describe('Test all exercises about Arrays and Strings', () => {
       );
     });
   });
-});
 
 it('check if two string are permutations of each others', () => {
   [
@@ -100,5 +103,117 @@ it('check if two string are permutations of each others', () => {
       entry[2],
       `${entry[0]} has ${entry[2] ? '' : 'not '}an edition of ${entry[1]}`
     );
+    });
+  });
+
+it('compress a string of repeated characters', () => {
+  [
+    [ 'aabcccccaaa', 'a2b1c5a3' ],
+    [ 'abcdef', 'abcdef' ],
+    [ null, '' ],
+    [ 2, '' ],
+    [ 'yyyygggggggg', 'y4g8' ],
+  ].forEach((entry) => {
+    assert.strictEqual(
+      stringCompression(entry[0]),
+      entry[1],
+      `"${entry[0]}" was compressed to "${entry[1]}"`
+    );
+    });
+  });
+
+it('rotates a matrix', () => {
+  [
+    [
+      [ [ 1, 2 ], [ 3, 4 ] ],
+      [ [ 1, 3 ], [ 2, 4 ] ],
+    ], [
+      [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12 ] ],
+      [ [ 1, 5, 9 ],
+        [ 2, 6, 10 ],
+        [ 3, 7, 11 ],
+        [ 4, 8, 12 ] ],
+    ], [
+      [ [ 1 ] ],
+      [ [ 1 ] ],
+    ], [
+      null,
+      [],
+    ],
+  ].forEach((entry) => {
+    assert.deepEqual(
+      rotateMatrix(entry[0]),
+      entry[1],
+      `"${entry[0]}" was rotated into "${entry[1]}"`
+    );
+    });
+  });
+
+it('set a matrix\'s rows and columns to 0', () => {
+  [
+    [
+      [ [ 1, 0 ], [ 3, 4 ] ],
+      [ [ 0, 0 ], [ 3, 0 ] ],
+    ], [
+      [ [ 1, 0, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 0 ] ],
+      [ [ 0, 0, 0, 0 ],
+        [ 5, 0, 7, 0 ],
+        [ 0, 0, 0, 0 ] ],
+    ], [
+      [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 0, 12 ] ],
+      [ [ 1, 2, 0, 4 ],
+        [ 5, 6, 0, 8 ],
+        [ 0, 0, 0, 0 ] ],
+    ], [
+      [ [ 0, 2, 3, 0 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12 ] ],
+      [ [ 0, 0, 0, 0 ],
+        [ 0, 6, 7, 0 ],
+        [ 0, 10, 11, 0 ] ],
+    ], [
+      [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12 ] ],
+      [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12 ] ],
+    ], [
+      [ [ 0 ] ],
+      [ [ 0 ] ],
+    ], [
+      null,
+      [],
+    ],
+  ].forEach((entry) => {
+    assert.deepEqual(
+      zeroMatrix(entry[0]),
+      entry[1],
+      `"${entry[0]}" was transformed into "${entry[1]}"`
+    );
+    });
+  });
+
+it('check if one string is substring of another', () => {
+  [
+    [ 'waterbottle', 'erbottlewat', true ],
+    [ 4, 'dog', false ],
+    [ 'cat', {}, false ],
+    [ 'cat', 'gato', false ],
+    [ 'house', 'sehou', true ],
+    [ 'JavaScript', 'ScriptJava', true ],
+  ].forEach((entry) => {
+    assert.equal(
+      isStringRotation(entry[0], entry[1]),
+      entry[2],
+      `${entry[0]} has ${entry[2] ? '' : 'not '}an edition of ${entry[1]}`
+    );
+    });
   });
 });
