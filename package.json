@@ -10,7 +10,9 @@
   },
   "engineStrict": false,
   "scripts": {
-    "test": "mocha test/**/*-test.js --full-trace --require babel-polyfill --require babel-register"
+    "test:mocha": "mocha test/**/*-test.js --full-trace --require babel-polyfill --require babel-register",
+    "test:eslint": "eslint 'app/**/*.js*'",
+    "test": "yarn test:eslint && yarn test:mocha"
   },
   "dependencies": {},
   "devDependencies": {
