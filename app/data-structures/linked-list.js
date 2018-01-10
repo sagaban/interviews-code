@@ -1,4 +1,4 @@
-export default function LinkedList() {
+export default function LinkedList(arr) {
   /**
    * The Node class represents the item that we want to add to the list. It
    * contains an element attribute, which is the value we want to add to the
@@ -154,4 +154,9 @@ export default function LinkedList() {
   this.print = function() {
     console.log(this.toString());
   };
+
+  // TODO: Find if there is a more elegant way of implement this "constructor"
+  if (!!arr && arr.length > 0) {
+    arr.forEach((element) => this.append(element));
+  }
 }
