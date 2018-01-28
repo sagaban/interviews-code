@@ -1,10 +1,10 @@
 import { assert } from 'chai';
-import LinkedList from '/app/data-structures/linked-list';
+import LinkedListClass from '/app/data-structures/linked-list-class';
 
-describe('LinkedList data structure', () => {
+describe('LinkedList Class data structure', () => {
   let linkedList;
   beforeEach(function() {
-    linkedList = new LinkedList();
+    linkedList = new LinkedListClass();
     linkedList.append('a');
     linkedList.append('b');
     linkedList.append('c');
@@ -43,7 +43,7 @@ describe('LinkedList data structure', () => {
 
   it('check if it\'s empty', () => {
     assert.ok(!linkedList.isEmpty(), 'it is not empty');
-    assert.ok((new LinkedList()).isEmpty(), 'a new linked list is empty');
+    assert.ok((new LinkedListClass()).isEmpty(), 'a new linked list is empty');
   });
 
   it('Get LinkedList size', () => {
@@ -56,7 +56,7 @@ describe('LinkedList data structure', () => {
     assert.equal(head.next.element, 'b', 'head next element ok');
   });
 
-  it('It get the string representation of the linkedList', () => {
+  it('It get the string represantation of the linkedlist', () => {
     const expected = 'a, b, c, d';
     assert.equal( linkedList.toString(), expected, 'element was removed');
   });
