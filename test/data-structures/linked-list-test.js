@@ -14,7 +14,7 @@ describe('LinkedList data structure', () => {
   it('Append an element to a linked-list', () => {
     const expected = [ 'a', 'b', 'c', 'd' ];
     assert.ok(linkedList, 'linkedList exists');
-    assert.deepEqual(linkedList.toArray(), expected, 'elemets were added');
+    assert.deepEqual(linkedList.toArray(), expected, 'elements were added');
   });
 
   it('Remove an element at a certain position', () => {

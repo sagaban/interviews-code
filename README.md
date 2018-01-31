@@ -10,6 +10,9 @@ Samples of algorithms and exercises, and useful concepts.
   * Circular linked list*
 * Trees
   * Binary tree and binary search tree
+* Stacks
+  * Stack
+  * Queue
 
 \* Only info
 

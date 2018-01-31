@@ -123,6 +123,30 @@ This would be the node order: 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
 
 ![removing-node-two-children](./resources/img/removing-node-two-children.png)
 
+## Stacks
+
+As you learned, we can add and remove elements from an array at any index desired. However, sometimes we need some form of data structure where we have more control over adding and removing items. There are two data structures that have some similarities to arrays but give us more control over the addition and removal of elements. These data structures are stacks and queues
+
+### Stack
+
+A stack is an ordered collection of items that follows the **LIFO** (short for **Last In First Out**) principle. The addition of new items or the removal of existing items takes place at the same end. The end of the stack is known as the top and the opposite is known as the base. The newest elements are near the top, and the oldest elements are near the base.
+
+![stack](./resources/img/stack.png)
+
+#### Push
+
+One of the most important method from a stack is the push one. This method will be responsible for adding new elements to the stack with one very important detail: we can only add new items to the top of the stack, meaning at the end of the stack.
+
+![stack-push](./resources/img/stack-push.png)
+
+
+#### Pop
+
+The other important method is the pop one. This method will be responsible for removing the items from the stack. As the stack uses the LIFO principle, the last item that we added is the one that is removed.
+
+![stack-pop](./resources/img/stack-pop.png)
+
+
 
 
 
