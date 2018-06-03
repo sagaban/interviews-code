@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import LinkedList from '/app/data-structures/linked-list';
 import {
   removeDups,
-  deleteMiddleNode,
+  extendListToDeleteMiddleNode,
 } from '/app/interview-questions/linked-lists';
 
 describe('Test all exercises about Linked Lists', () => {
@@ -38,7 +38,7 @@ describe('Test all exercises about Linked Lists', () => {
     [
       [
         [ 'a', 'b', 'c', 'd', 'e', 'f' ],
-        [ 'a', 'b', 'd', 'e', 'f' ],
+        [ 'a', 'b', 'c', 'e', 'f' ],
       ],
       [
         [ 'a', 'b', 'c' ],
@@ -46,22 +46,14 @@ describe('Test all exercises about Linked Lists', () => {
       ],
     ].forEach((entry) => {
       const list = new LinkedList(entry[0]);
-      deleteMiddleNode(list);
+      const mn = list.getNodeAt(parseInt(list.size()/2));
+      extendListToDeleteMiddleNode(list);
+      list.deleteMiddleNode(mn);
       assert.deepEqual(
         list.toArray(),
         entry[1],
         `${entry[0]} after deleted middle node is ${entry[1]}`
       );
-    });
-
-    [
-      null,
-      new LinkedList([ 'a', 'b' ]),
-      new LinkedList([ 'a' ]),
-      2,
-      [ 'a' ],
-    ].forEach((list) => {
-      assert.throws(() => deleteMiddleNode(list));
     });
   });
 });

@@ -4,7 +4,7 @@ export default function Stack() {
   /**
    * This adds a new item (or several items) to the top of the stack.
    *
-   * @argument  {*} element   Element to be added to the stack
+   * @param  {*} element   Element to be added to the stack
    */
   this.push = function(element) {
     // items.push(element); --> Too obvious

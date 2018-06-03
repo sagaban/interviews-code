@@ -40,16 +40,37 @@ export const removeDups = (list) => {
  * Input: the node c from the linked list a -> b -> c -> d -> e -> f
  * Result: nothing is returned, but the new linked list looks like
  *         a -> b -> d -> e -> f
+ * To avoid modifying the original data structure, I will create a function to
+ * extend the functionality of the original LinkedList object with
+ * `extendListToDeleteMiddleNode` method
  *
  * @param {LinkedList} list
  * */
-export const deleteMiddleNode = (list) => {
-  if (!list || !list.size || list.size() <= 2) {
-    throw new Error('The list is not valid or not long enough');
+export const extendListToDeleteMiddleNode = (list) => {
+  if (!!list && typeof list === 'object') {
+    list.deleteMiddleNode = function(mn) {
+      let current = list.getHead();
+      while (current.next) {
+        if (current.next.element === mn.element) {
+          current.next = current.next.next;
+          break;
+        }
+        current = current.next;
+      }
+    };
   }
-
-  const removeIndex = Math.floor((list.size() - 1) / 2);
-  list.removeAt(removeIndex);
 };
 
-// TODO: Finish the book exercises
+// BOOK SOLUTION
+/**
+var deleteMidNode = function(midNode) {
+  var node = midNode;
+  while (node !== null && node.next !== null) {
+    node.value = node.next.value;
+    if (node.next.next === null) {
+      node.next = null;
+    }
+    node = node.next;
+  }
+};
+ */

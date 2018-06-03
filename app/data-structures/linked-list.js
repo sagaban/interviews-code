@@ -155,6 +155,26 @@ export default function LinkedList(arr) {
     console.log(this.toString());
   };
 
+  /**
+   * Returns the node of the liked list at a certain position
+   *
+   * @param {number} index
+   * @return {Node|null}
+   */
+  this.getNodeAt = function(index) {
+    if (index >= 0 && index <= length) {
+      let current = head;
+      for (let i = 0; i < length; i++) {
+        if (i === index) {
+          return current;
+        }
+        current = current.next;
+      }
+    } else {
+      return null;
+    }
+  };
+
   // TODO: Find if there is a more elegant way of implement this "constructor"
   if (!!arr && arr.length > 0) {
     arr.forEach((element) => this.append(element));
