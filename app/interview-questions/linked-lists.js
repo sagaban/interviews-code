@@ -1,3 +1,4 @@
+import LinkedList from '/app/data-structures/linked-list';
 // Chapter 2
 
 /**
@@ -74,3 +75,77 @@ var deleteMidNode = function(midNode) {
   }
 };
  */
+
+ /**
+  * 2.4 Partition: Write code to partition a linked list around a value x, such
+  * that all nodes less than x come before all nodes greater than or equal to x.
+  * If x is contained within the list, the values of x only need to be after the
+  * elements less than x (see below). The partition element x can appear
+  * anywhere in the "right partition"; it does not need to appear between the
+  * left and right partitions.
+  * EXAMPLE
+  * Input: 3 -> 5 -> 8 -> 5 - > 10 -> 2 -> 1 [partition = 5)
+  * Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+  */
+ // TODO: Implement this
+
+ /**
+  * 2.5 Sum Lists: You have two numbers represented by a linked list, where each
+  * node contains a single digit. The digits are stored in reverse order, such
+  * that the 1 's digit is at the head of the list. Write a function that adds
+  * the two numbers and returns the sum as a linked list.
+  * EXAMPLE
+  * Input: (7 -> 1 -> 6) + (5 -> 9 -> 2) .That is,617 + 295.
+  * Output: 2 -> 1 -> 9. That is, 912.
+  *
+  * @param {LinkedList} listA
+  * @param {LinkedList} listB
+  * @return {LinkedList}
+  */
+  export const sumList = (listA, listB) => {
+    const total = new LinkedList();
+    let currentA = listA.getHead();
+    let currentB = listB.getHead();
+    let excess = 0;
+    while (currentA || currentB || excess) {
+      const a = currentA ? currentA.element : 0;
+      const b = currentB ? currentB.element : 0;
+      const partial = a + b + excess;
+      total.append(partial % 10);
+      excess = parseInt(partial / 10);
+      currentA = currentA ? currentA.next : null;
+      currentB = currentB ? currentB.next : null;
+    }
+    return total;
+  };
+
+  /**
+   * FOLLOW UP
+   * Suppose the digits are stored in forward order. Repeat the above problem.
+   * EXAMPLE
+   * Input: (6 -> 1 -> 7) + (2 -> 9 -> 5) . That is,617 + 295 .
+   * Output: 9 -> 1 -> 2. That is, 912.
+   *
+   * @param {LinkedList} listA
+   * @param {LinkedList} listB
+   * @return {LinkedList}
+   */
+  export const sumListForward = (listA, listB) => {
+    let sum = 0;
+    let currentA = listA.getHead();
+    let currentB = listB.getHead();
+    const exponent = listA.size() > listB.size()?
+      listA.size():
+      listB.size();
+    let positionFactor = Math.pow(10, exponent - 1);
+    while (currentA || currentB) {
+      const a = currentA ? currentA.element : 0;
+      const b = currentB ? currentB.element : 0;
+      sum += (a + b) * positionFactor;
+      positionFactor /= 10;
+      currentA = currentA ? currentA.next : null;
+      currentB = currentB ? currentB.next : null;
+    }
+    return new LinkedList(String(sum).split('').map((s) => parseInt(s)));
+  }
+;
