@@ -27,6 +27,10 @@ Samples of algorithms and exercises, and useful concepts.
 
 * Arrays and Strings
 
+## [Concepts](./concepts.md)
+
+* The Big O
+
 # Resources
 
  * [Cracking the Coding Interview - 6th Edition](http://www.crackingthecodinginterview.com/)
